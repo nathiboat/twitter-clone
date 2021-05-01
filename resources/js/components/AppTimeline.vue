@@ -3,8 +3,6 @@
         <app-tweet v-for="tweet in tweets"
             :key="tweet.id"
             :tweet="tweet"
-
-
         >
 
         </app-tweet>
@@ -12,23 +10,22 @@
 </template>
 
 <script>
+    import {mapGetters, mapActions } from 'vuex'
+
     export default {
-        data () {
-            return {
-                tweets: []
-            }
+        computed: {
+          ...mapGetters({
+              tweets: 'timeline/tweets'
+          })
         },
-
         methods: {
-            async getTWeets () {
-                let response = await axios.get('/api/timeline')
-
-                this.tweets = response.data.data
-            }
+            ...mapActions({
+                getTweets: 'timeline/getTweets'
+            })
         },
 
-        mounted () {
-            this.getTWeets()
+        mounted() {
+            this.getTweets()
         }
     }
 </script>

@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Api\Timeline;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TweetCollection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
+
 
 class TimelineController extends Controller
 {
     public function index(Request $request)
     {
-        $tweets = $request->user()->tweetsFromFollowing()->paginate(5);
+        $tweets = $request->user()->tweetsFromFollowing()->paginate(8);
 
         return new TweetCollection($tweets);
     }
