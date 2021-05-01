@@ -14,6 +14,8 @@ Vue.use(Vuex)
 import VueObserveVisibility from 'vue-observe-visibility'
 Vue.use(VueObserveVisibility)
 
+Vue.prototype.$user = User
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -26,6 +28,7 @@ const files = require.context('./', true, /\.vue$/i)
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 import timeline from './store/timeline'
+import Vue from 'vue';
 
 const store = new Vuex.Store({
     modules: {

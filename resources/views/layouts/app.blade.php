@@ -18,6 +18,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script>
+        window.User = {
+            id: {{ optional(auth()->User())->id }},
+            avatar: '{{ optional(auth()->User())->avatar() }}'
+        }
+    </script>
 </head>
 <body>
     <div id="app">
