@@ -16,16 +16,17 @@ export default {
     mutations: {
         PUSH_TWEET (state, data) {
 
-            console.log(data)
             state.tweets.push(...data)
         }
     },
 
     actions: {
-        async getTweets ({ commit }) {
-            let response = await axios.get('/api/timeline')
+        async getTweets ({ commit }, url) {
+            let response = await axios.get(url)
 
             commit('PUSH_TWEET', response.data.data)
+
+            return response
         }
     }
 }
