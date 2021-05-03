@@ -42,7 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function avatar() {
+
+    public function tweets()
+    {
+        return $this->hasMany(Tweet::class);
+    }
+
+    public function avatar() 
+    {
         return 'https://www.gravatar.com/avatar/'. md5($this->email) . '?d=mp';
     }
 

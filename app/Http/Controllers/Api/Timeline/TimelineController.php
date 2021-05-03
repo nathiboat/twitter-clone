@@ -11,9 +11,18 @@ use Illuminate\Contracts\Encryption\DecryptException;
 
 class TimelineController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['auth:sanctum']);
+    }
+
     public function index(Request $request)
     {
-        $tweets = $request->user()->tweetsFromFollowing()->paginate(8);
+        $tweets = $request->user()
+        ->tweetsFromFollowing()
+        ->latest()
+        ->paginate(8);
 
         return new TweetCollection($tweets);
     }
