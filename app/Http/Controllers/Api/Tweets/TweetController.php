@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Tweets;
 use App\Events\Tweets\TweetWasCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Tweets\TweetStoreReqest;
+use App\Tweets\TweetType;
 
 class TweetController extends Controller
 {
@@ -17,7 +18,9 @@ class TweetController extends Controller
     public function store(TweetStoreReqest $request)
     {
         // will add validation
-        $tweet = $request->user()->tweets()->create($request->only('body'));
+        $tweet = $request->user()->tweets()->create(array_merge($request->only('body'), [
+            'type' => TweetType::TWEET
+        ]));
 
         broadcast(new TweetWasCreated($tweet));
     }
