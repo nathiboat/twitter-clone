@@ -18,4 +18,14 @@ class Tweet extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Return original tweet
+     * 
+     * @return void
+     */
+    public function originalTweet()
+    {
+        return $this->hasOne(Tweet::class, 'id', 'original_tweet_id');
+    }
 }
