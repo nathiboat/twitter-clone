@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/timeline', [App\Http\Controllers\Api\Timeline\TimelineController::class, 'index'])->name('timeline');
 
 Route::post('/tweets', [App\Http\Controllers\Api\Tweets\TweetController::class, 'store']);
+
